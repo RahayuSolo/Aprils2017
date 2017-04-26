@@ -16,7 +16,7 @@
 
       </button>
 
-      <a href="#" class = "navbar-brand">ATRahayu</a>
+      <a href="#" class = "navbar-brand">LEARNED LARAVEL 5</a>
 
     </div>
 
@@ -25,7 +25,7 @@
     <ul class="nav navbar-nav navbar-right">
 	
 
-	<li>{!! link_to(route('root'), "Home") !!}</li>
+	
 
 	<li>{!! link_to(route('articles.index'), "Article") !!}</li>
 	

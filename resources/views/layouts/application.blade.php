@@ -10,7 +10,7 @@
 
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <title>ATRahayu</title>
+      <title >ATRahayu</title>
 
       <link href="/assets/css/bootstrap.css" rel="stylesheet" />
 

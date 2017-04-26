@@ -28,14 +28,14 @@ class MaatwebsiteDemoController extends Controller
      *
      * @var array
      */
-	public function downloadExcel(Request $request,$type, $id)
+	public function downloadExcel(Request $request, $id)
 		{
 			$import;
 			$data=Article::with(array('comments'=>function($query){
 				$query->where('article_id','$id');
 				$query->select('article_id','content');
 				$query->orderBy('comments.created_at','DESC');
-			}))->where('id','$id')->get()->toArray();;
+			}))->where('id','$id')->get();
 			
 			return Excel::create('Learned Laravel ImportExport', function($excel) use ($data) {
 				$excel->sheet('mySheet', function($sheet) use ($data)
