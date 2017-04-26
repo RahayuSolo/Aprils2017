@@ -23,12 +23,13 @@
     <div class="collapse navbar-collapse">
 
     <ul class="nav navbar-nav navbar-right">
+	
 
-	{{-- <li>{!! link_to(route('root'), "Home") !!}</li>
+	<li>{!! link_to(route('root'), "Home") !!}</li>
 
-		<li>{!! link_to(route('profile'), "Profile") !!}</li>
-
-	<li>{!! link_to(route('articles.index'), "Article") !!}</li> --}}
+	<li>{!! link_to(route('articles.index'), "Article") !!}</li>
+	
+	<li>{!! link_to(route('maatweb'), "Import and Export") !!}</li>
 
     </ul>
 

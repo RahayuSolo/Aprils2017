@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Item;
+
+use App\Article;
+
 use Excel;
+
+use File;
 
 class MaatwebsiteDemoController extends Controller
 {
@@ -26,8 +30,8 @@ class MaatwebsiteDemoController extends Controller
      */
 	public function downloadExcel(Request $request, $type)
 	{
-		$data = Item::get()->toArray();
-		return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
+		$data=Article::get()->toArray();
+		return Excel::create('Learned Laravel ImportExport', function($excel) use ($data) {
 			$excel->sheet('mySheet', function($sheet) use ($data)
 	        {
 				$sheet->fromArray($data);
@@ -62,10 +66,8 @@ class MaatwebsiteDemoController extends Controller
 
 							foreach ($value as $v) {		
 
-								$insert[] = ['title' => $v['title'], 'content' => $v['content']];
-
+								$insert[] = ['title' => $v['title'], 'content' => $v['content'], ];
 							}
-
 						}
 
 					}else{
@@ -73,26 +75,16 @@ class MaatwebsiteDemoController extends Controller
 						$insert[] = ['title' => $value['title'], 'content' => $value['content']];
 
 					}
-
 				}
-				
-
 				if(!empty($insert)){
 
 					Article::insert($insert);
 
 					return back()->with('success','Insert Record successfully.');
-
 				}
-
-
 			}
-
-
 		}
 
-
 		return back()->with('error','Please Check your file, Something is wrong there.');
-
 	}
 }
