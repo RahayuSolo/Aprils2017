@@ -29,7 +29,8 @@
 
 	<li>{!! link_to(route('articles.index'), "Article") !!}</li>
 	
-	<li>{!! link_to(route('maatweb'), "Import and Export") !!}</li>
+	{{--<li>{!! link_to(route('maatweb'), "Import and Export") !!}</li>--}}
+	<li>{!! link_to(route('maatweb'), "Import") !!}</li>
 
     </ul>
 

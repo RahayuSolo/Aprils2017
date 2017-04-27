@@ -17,6 +17,8 @@
    {!! link_to(route('articles.edit', $article->id), 'Edit', ['class' => 'btn btn-raised btn-warning']) !!}
 
    {!! Form::submit('Delete', array('class' => 'btn btn-raised btn-danger', "onclick" => "return confirm('are you sure?')")) !!}
+   
+   	{!! link_to(route('export', $article->id), 'Download Excel xls',['class'=>'btn btn-raised btn-warning']) !!}
 
   {!! Form::close() !!}
 

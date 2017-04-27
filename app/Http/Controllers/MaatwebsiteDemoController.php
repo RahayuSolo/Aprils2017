@@ -28,24 +28,33 @@ class MaatwebsiteDemoController extends Controller
      *
      * @var array
      */
-	public function downloadExcel(Request $request,$type, $id)
+	public function downloadExcel(Request $request, $id)
 		{
-			$import;
-			$data=Article::with(array('comments'=>function($query){
-				$query->where('article_id','$id');
-				$query->select('article_id','content');
-				$query->orderBy('comments.created_at','DESC');
-			}))->where('id','$id')->get()->toArray();;
+			$export=[];
+			//$data=Article::with(array('comments'=>function($query){
+				//$query->where('article_id','$id');
+				//$query->select('article_id','content');
+				//$query->orderBy('comments.created_at','DESC');
+			//}))->where('id','$id')->get()->toArray();
 			
-			return Excel::create('Learned Laravel ImportExport', function($excel) use ($data) {
-				$excel->sheet('mySheet', function($sheet) use ($data)
-				{
-					$sheet->fromArray($data);
-				});
-			})->download($type);
-		}
+			//return Excel::create('Learned Laravel ImportExport', function($excel) use ($data) {
+				//$excel->sheet('mySheet', function($sheet) use ($data)
+				//{
+					//$sheet->fromArray($data);
+				//});
+			//})->download($type);
+		//}
 		
-
+		$data=Article::join('comments','comments.article_id','=','articles.id')->select('articles.id','articles.title','comments.content')->where('articles.id',$id)->get();
+		
+		Excel::create('payments',function($excel) use ($data){
+			$excel->sheet('sheet1', function($sheet) use ($data){
+				$sheet->fromArray($data,null,'A1',false,true);
+			});
+			
+		})->download('xls');
+		
+	}
 	/**
      * Import file into database Code
      *

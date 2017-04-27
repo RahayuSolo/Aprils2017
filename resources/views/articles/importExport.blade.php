@@ -43,12 +43,10 @@
 				<br/>
 
 		    	
-		    	<h3>Import File From Database:</h3>
+		    	{{--<h3>Import File From Database:</h3>
 		    	<div style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;", align="center"> 		
-			    	<a href="{{ url('downloadExcel/xls') }}"><button class="btn btn-success btn-lg">Download Excel xls</button></a>
-					<a href="{{ url('downloadExcel/xlsx') }}"><button class="btn btn-success btn-lg">Download Excel xlsx</button></a>
-					<a href="{{ url('downloadExcel/csv') }}"><button class="btn btn-success btn-lg">Download CSV</button></a>
-		    	</div>
+			    	  	{!! link_to(route('export', $article->id), 'Download Excel xls',['class'=>'btn btn-raised btn-warning']) !!}
+		    	</div>--}}
 
 		  </div>
 		</div>
