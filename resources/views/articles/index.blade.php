@@ -1,17 +1,8 @@
 @extends("layouts.application")
-
 @section("content")
+  <h1>Article page</h1>
 
-  <div class="row">
-
-    <h2 class="pull-left">List Articles</h2>
-
+  <div id="list-article">
+    @include('articles.list')
   </div>
-
-  <div id="articles-list">
-  
-  	@include('articles.list')
-
-  </div>
-
 @stop

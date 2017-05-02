@@ -4,26 +4,20 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticlesTable extends Migration
+class CreateTasksTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-	 
-	public $timestamps = false; 
-	
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
-			
-			$table->increments('id');
-
-            $table->string('title');
-
-            $table->text('content');
-
+        Schema::create('tasks', function (Blueprint $table) {
+            $table->increments('id');
+			$table->string('name');
+			$table->text('description');
+			$table->integer('user_id');
             $table->timestamps();
         });
     }
@@ -35,6 +29,6 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('tasks');
     }
 }

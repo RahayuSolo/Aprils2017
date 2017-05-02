@@ -164,8 +164,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 		Collective\Html\HtmlServiceProvider::class,
 		Maatwebsite\Excel\ExcelServiceProvider::class,
-		
-		//Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
+		EllipseSynergie\ApiResponse\Laravel\ResponseServiceProvider::class,
+		Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
         /*
          * Package Service Providers...
          */

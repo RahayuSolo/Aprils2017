@@ -22,14 +22,35 @@ class ArticlesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-		
-    $articles = Article::paginate(2);
+	public function __construct() {
+		 $this->middleware('sentinel');
+		 $this->middleware('sentinel.role');
+		 }
+	 
+    public function index(Request $request) {
+		 if($request->ajax()) {
+		 $articles = Article::where('title', 'like', '%'.$request->keywords.'%')
+		 ->orWhere('content', 'like', '%'.$request->keywords.'%');
+		 if($request->direction) {
+		 $articles = $articles->orderBy('id', $request->direction);
+		 }
+		 $articles = $articles->paginate(3);
 
-    return view('articles.index')->with('articles', $articles);
-	
-    }
+		 $request->direction == 'asc' ? $direction = 'desc' : $direction = 'asc';
+		 $request->keywords == '' ? $keywords = '' : $keywords = $request->keywords;
+
+		 $view = (String) view('articles.list')
+		 ->with('articles', $articles)
+		 ->render();
+		 return response()->json(['view' => $view, 'direction' => $direction,
+		'keywords' => $keywords, 'status' => 'success']);
+		 } else {
+		 $articles = Article::paginate(3);
+		 return view('articles.index')
+		 ->with('articles', $articles);
+		 }
+		 }
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,15 +59,15 @@ class ArticlesController extends Controller
      */
     public function create()
 	{
-    $new_article = new Article;
-
-	$new_article->title = "Learn Laravel";
-
-	$new_article->content = "PHP That Doesn't Hurt. Code Happy & Enjoy The Fresh Air";
-
-	$new_article->save();  	
-    
-	return view('articles.create');
+		$new_article = new Article;
+		
+		$new_article->title = "Learn Laravel";
+		
+		$new_article->content = "PHP That Doesn't Hurt. Code Happy & Enjoy The Fresh Air";
+		
+		$new_article->save();
+		
+		return view('articles.create');
     }
 
     /**

@@ -24,13 +24,28 @@
 
     <ul class="nav navbar-nav navbar-right">
 	
-
+	<li>{!! link_to(route('root'), "Home") !!}</li>
 	
-
+	<li>{!! link_to(route('profile'), "Profile") !!}</li>
+	
 	<li>{!! link_to(route('articles.index'), "Article") !!}</li>
 	
-	{{--<li>{!! link_to(route('maatweb'), "Import and Export") !!}</li>--}}
 	<li>{!! link_to(route('maatweb'), "Import") !!}</li>
+	
+	@if (Sentinel::check())
+		
+    <li>{!! link_to(route('logout'), 'Logout') !!}</li>
+	
+    <li><a>Wellcome {!! Sentinel::getUser()->email !!}</a></li>
+	
+  @else
+	  
+    <li>{!! link_to(route('signup'), 'Signup') !!}</li>
+    <li>{!! link_to(route('login'), 'Login') !!}</li>
+	
+  @endif
+  
+  
 
     </ul>
 
